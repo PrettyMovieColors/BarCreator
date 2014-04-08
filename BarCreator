@@ -1,0 +1,29 @@
+/*The license for this code GNU GPLv3. It is free and open source!*/
+String barName = "h13 Bar";
+String barNameSearch = barName+".txt";
+String dat[] = new String[0];
+int h = 240;//MAKE SURE THIS IS THE CORRECT HEIGHT OF THE FRAMES
+
+void setup()
+{
+  dat = loadStrings(barNameSearch);
+  size(dat.length/h, h);
+}
+
+void draw()
+{
+  randomSeed(0);
+  loadPixels();
+  for (int i = 0; i < width; i++)
+  {
+    for (int j = 0; j < height; j++)
+    {
+      pixels[i+width*j] = int(dat[j+i*h]);
+    }
+  }
+  updatePixels();
+  if(frameCount == 1)
+  {
+    saveFrame(barName+".png");
+  }
+}
